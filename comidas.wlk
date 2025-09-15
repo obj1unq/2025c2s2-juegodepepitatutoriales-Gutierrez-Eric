@@ -16,7 +16,13 @@ object manzana {
 
 	method image() = "manzana.png"
 
+	method colisionarCon(ave){
+		ave.comer(self)
+
+	}
+
 }
+
 
 object alpiste {
 
@@ -27,5 +33,10 @@ object alpiste {
 	} 
 
 	method image() = "alpiste.png"
+
+	method colisionarCon(ave){
+		ave.comer(self)
+
+	}
 }
 

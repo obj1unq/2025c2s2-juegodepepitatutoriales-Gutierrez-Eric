@@ -11,17 +11,28 @@ object pepita {
 
 
 	method comer(comida) {
-		if(position == comida.position()){
 			energia = energia + comida.energiaQueOtorga()
 			game.removeVisual(comida)
 	}
-}
+
 	method volar(kms) {
 		energia = energia - 10 - kms 
 	}
 	
 	method energia() {
 		return energia
+	}
+
+	method pierde(){
+		image = "pepita-gris.png"
+		game.say(self,"Perdi")
+		game.onTick(300,"Pierde",{game.stop()})
+	}
+
+	method gana(){
+		image = "pepita-grande.png"
+		game.say(self,"Gane")
+		game.onTick(300,"Gana",{game.stop()})
 	}
 
 

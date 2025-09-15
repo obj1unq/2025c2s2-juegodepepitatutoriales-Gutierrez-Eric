@@ -22,11 +22,7 @@ program pepitaGame {
 	keyboard.down().onPressDo{pepita.moverHaciaAbajo()}
 	keyboard.left().onPressDo{silvestre.perseguirA(pepita)}
 	keyboard.right().onPressDo{silvestre.perseguirA(pepita)}
-	game.whenCollideDo(silvestre,{pepita => pepita.image("pepita-gris.png")})
-	game.whenCollideDo(nido,{pepita => pepita.image("pepita-grande.png")})
 	game.onTick(800, "movimiento",{ pepita.pierdeAltura()})
-	game.whenCollideDo(alpiste,{pepita => pepita.comer(alpiste)})
-	game.whenCollideDo(manzana,{pepita => pepita.comer(manzana)})
+	game.onCollideDo(pepita, { objeto => objeto.colisionarCon(pepita)})
 	game.start()	
-
 }

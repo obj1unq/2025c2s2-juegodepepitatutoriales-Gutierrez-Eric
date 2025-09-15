@@ -7,4 +7,8 @@ object silvestre {
     method perseguirA(presa){
          position = game.at(presa.position().x().max(3),1)
     }
+
+    method colisionarCon(ave){
+		ave.pierde()
+	}
 }

@@ -12,9 +12,10 @@ program pepitaGame {
 	game.addVisualCharacter(pepita)
 	game.addVisual(silvestre)
 	game.addVisual(nido)
-	keyboard.left().onPressDo{silvestre.moverse()}
-	keyboard.right().onPressDo{silvestre.moverse()}
-	game.whenCollideDo()
+	keyboard.left().onPressDo{silvestre.perseguirA(pepita)}
+	keyboard.right().onPressDo{silvestre.perseguirA(pepita)}
+	game.whenCollideDo(silvestre,{pepita => pepita.image("pepita-gris.png")})
+	game.whenCollideDo(nido,{pepita => pepita.image("pepita-grande.png")})
 	game.start()	
 }
 

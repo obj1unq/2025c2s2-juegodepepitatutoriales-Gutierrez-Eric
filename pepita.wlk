@@ -1,3 +1,4 @@
+import silvestre.*
 
 object pepita {
 	var energia = 100
@@ -14,6 +15,12 @@ object pepita {
 	
 	method energia() {
 		return energia
+	}
+
+	method seEncuentraCon(){
+		if(position == silvestre.position()){
+			image = "pepita-gris.png"
+		}
 	}
 
 }

@@ -4,10 +4,7 @@ object silvestre {
 
     method image () = "silvestre.png"
 
-    method moverse(){
-         position = game.at(pepita.position().x(),1)
-    }
-
-    method perseguirA(pepita){
+    method perseguirA(presa){
+         position = game.at(presa.position().x().max(3),1)
     }
 }

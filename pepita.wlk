@@ -1,7 +1,7 @@
 import silvestre.*
 
 object pepita {
-	var energia = 100
+	var energia = 500
 	var property position= game.at(1,5)
 	var property image = "pepita.png"
 

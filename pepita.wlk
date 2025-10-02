@@ -1,5 +1,6 @@
 import silvestre.*
 import nido.*
+import direcciones.*
 import wollok.game.*
 
 object pepita {
@@ -23,6 +24,11 @@ object pepita {
 		return energia
 	}
 
+
+	 method moverHacia(direccion){
+        position = direccion.siguiente(position)
+    }
+
 	method pierde(){
 		image = "pepita-gris.png"
 		game.say(self,"Perdi")
@@ -33,47 +39,6 @@ object pepita {
 		image = "pepita-grande.png"
 		game.say(self,"Gane")
 		game.onTick(300,"Gana",{game.stop()})
-	}
-
-
-
-	//NO SE ME OCURRIO COMO APLICAR POLIMORFISMO SIN USAR MUCHOS IF
-
-	method moverHaciaDerecha(){
-		if(energia > 0){
-		position = game.at(((position.x()+1).min(game.width()-1)),position.y())
-		energia = energia - 9
-		} else {
-		image = "pepita-gris.png"
-	}
-}
-
-	method moverHaciaIzquierda(){
-			if(energia > 0){
-		position = game.at(((position.x()-1).min(game.width()-1)),position.y())
-		energia = energia - 9
-		} else {
-		image = "pepita-gris.png"
-	}
-}
-
-
-	method moverHaciaArriba(){
-			if(energia > 0){
-		position = game.at((position.x()),(position.y()+1).min(game.width()-1))
-		energia = energia - 9
-		} else {
-		image = "pepita-gris.png"
-	}
-}	
-
-	method moverHaciaAbajo(){
-			if(energia > 0){
-		position = game.at((position.x()),(position.y()-1).max(0))
-		energia = energia - 9
-		} else {
-		image = "pepita-gris.png"
-		}
 	}
 
 	method pierdeAltura(){

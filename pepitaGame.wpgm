@@ -3,26 +3,48 @@ import pepita.*
 import silvestre.*
 import nido.*
 import comidas.*
+import direcciones.*
 
 program pepitaGame {
-	game.title("Pepita") 	//Valor por defecto "Wollok Game"
-	game.height(10) 		//valor por defecto 5
-	game.width(10) 			//valor por defecto 5
-	game.cellSize(50) 		//valor por defecto 50
-	game.boardGround("fondo.jpg")
-	//Valor por defecto game.ground("ground.png")
-	game.addVisual(pepita)
-	game.addVisual(silvestre)
-	game.addVisual(nido)
-	game.addVisual(alpiste)
-	game.addVisual(manzana)
-	keyboard.right().onPressDo{pepita.moverHaciaDerecha()}
-	keyboard.left().onPressDo{pepita.moverHaciaIzquierda()}
-	keyboard.up().onPressDo{pepita.moverHaciaArriba()}
-	keyboard.down().onPressDo{pepita.moverHaciaAbajo()}
-	keyboard.left().onPressDo{silvestre.perseguirA(pepita)}
-	keyboard.right().onPressDo{silvestre.perseguirA(pepita)}
-	game.onTick(800, "movimiento",{ pepita.pierdeAltura()})
-	game.onCollideDo(pepita, { objeto => objeto.colisionarCon(pepita)})
+	juego.configBase()	
+	juego.configImagenes()
+	juego.configControlesPepita()
+	juego.configControlesSilvestre()
+	game.whenCollideDo(silvestre,{pepita => pepita.image("pepita-gris.png")})
+	game.whenCollideDo(nido,{pepita => pepita.image("pepita-grande.png")})
+	game.onTick(800, "movimiento",{pepita.pierdeAltura()})
+	game.whenCollideDo(pepita,{objeto => objeto.colisionarCon(pepita)})
 	game.start()	
+
+}
+
+object juego {
+
+	method configBase(){
+		game.title("Pepita")
+		game.height(10) 
+		game.width(10) 
+		game.cellSize(50)
+		game.boardGround("fondo.jpg")
+}
+
+	method configImagenes(){
+		game.addVisual(pepita)
+		game.addVisual(silvestre)
+		game.addVisual(nido)
+		game.addVisual(alpiste)
+		game.addVisual(manzana)
+}
+
+	method configControlesPepita(){
+		keyboard.right().onPressDo{pepita.moverHacia(derecha)}
+		keyboard.left().onPressDo{pepita.moverHacia(izquierda)}
+		keyboard.up().onPressDo{pepita.moverHacia(arriba)}
+		keyboard.down().onPressDo{pepita.moverHacia(abajo)}
+	}
+
+	method configControlesSilvestre(){
+		keyboard.left().onPressDo{silvestre.perseguirA(pepita)}
+		keyboard.right().onPressDo{silvestre.perseguirA(pepita)}
+	}
 }

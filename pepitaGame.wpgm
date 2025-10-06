@@ -10,8 +10,6 @@ program pepitaGame {
 	juego.configImagenes()
 	juego.configControlesPepita()
 	juego.configControlesSilvestre()
-	game.whenCollideDo(silvestre,{pepita => pepita.image("pepita-gris.png")})
-	game.whenCollideDo(nido,{pepita => pepita.image("pepita-grande.png")})
 	game.onTick(800, "movimiento",{pepita.pierdeAltura()})
 	game.whenCollideDo(pepita,{objeto => objeto.colisionarCon(pepita)})
 	game.start()	
@@ -32,8 +30,10 @@ object juego {
 		game.addVisual(pepita)
 		game.addVisual(silvestre)
 		game.addVisual(nido)
-		game.addVisual(alpiste)
-		game.addVisual(manzana)
+		game.addVisual(new Alpiste(position = game.at(2,7), peso = 20))
+		game.addVisual(new Alpiste(position = game.at(5,2), peso = 15))
+		game.addVisual(new Manzana(position = game.at(8,8)))
+		game.addVisual(new Manzana(position = game.at(1,8)))
 }
 
 	method configControlesPepita(){
